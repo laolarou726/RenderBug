@@ -1,0 +1,55 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cc="clr-namespace:RenderBug"
+        xmlns:converters="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls">
+
+    <Styles.Resources>
+        <converters:CornerRadiusToDoubleConverter x:Key="CornerRadiusToDoubleConverter" />
+    </Styles.Resources>
+
+	<Style Selector="cc|AnimationLayer">
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Panel x:Name="Panel"
+                       ClipToBounds="True"
+                       Background="{TemplateBinding Background}">
+					<Rectangle Name="ActiveRect"
+                               Fill="{TemplateBinding MouseOnBrush}"
+                               Opacity="0"
+                               ClipToBounds="True"
+                               RadiusX="{TemplateBinding CornerRadius, Converter={StaticResource CornerRadiusToDoubleConverter}}"
+                               RadiusY="{TemplateBinding CornerRadius, Converter={StaticResource CornerRadiusToDoubleConverter}}">
+						<Rectangle.Transitions>
+							<Transitions>
+								<DoubleTransition Property="Opacity" Duration="{x:Static cc:Ripple.Duration}"
+                                                  Easing="{x:Static cc:Ripple.Easing}" />
+							</Transitions>
+						</Rectangle.Transitions>
+					</Rectangle>
+					<ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+					<Canvas Name="PART_RippleCanvasRoot"
+                            Background="{TemplateBinding Background}"
+                            IsHitTestVisible="False" />
+				</Panel>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+	<!-- Transitions -->
+
+	<Style Selector="cc|AnimationLayer:not(.notransitions) /template/ Canvas#PART_RippleCanvasRoot > cc|Ripple">
+		<Setter Property="Transitions">
+			<Transitions>
+				<ThicknessTransition Property="Margin" Duration="{x:Static cc:Ripple.Duration}"
+                                     Easing="{x:Static cc:Ripple.Easing}" />
+				<DoubleTransition Property="Width" Duration="{x:Static cc:Ripple.Duration}"
+                                  Easing="{x:Static cc:Ripple.Easing}" />
+				<DoubleTransition Property="Height" Duration="{x:Static cc:Ripple.Duration}"
+                                  Easing="{x:Static cc:Ripple.Easing}" />
+				<DoubleTransition Property="Opacity" Duration="{x:Static cc:Ripple.Duration}"
+                                  Easing="{x:Static cc:Ripple.Easing}" />
+			</Transitions>
+		</Setter>
+	</Style>
+</Styles>

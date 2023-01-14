@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderBug", "RenderBug\RenderBug.csproj", "{A39719C5-B83A-44E5-B728-E10BF7243315}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A39719C5-B83A-44E5-B728-E10BF7243315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39719C5-B83A-44E5-B728-E10BF7243315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39719C5-B83A-44E5-B728-E10BF7243315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39719C5-B83A-44E5-B728-E10BF7243315}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1DEB35D-55DE-4552-B62C-E041093C05B2}
+	EndGlobalSection
+EndGlobal
