@@ -2,8 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="RenderBug.App">
     <Application.Styles>
-        <StyleInclude Source="ListBoxItemStyles.axaml"/>
-        <StyleInclude Source="AnimationLayerStyle.axaml"/>
+        <StyleInclude Source="avares://RenderBug/ListBoxItemStyles.axaml"/>
+        <StyleInclude Source="avares://RenderBug/AnimationLayerStyle.axaml"/>
 		<FluentTheme Mode="Light"/>
     </Application.Styles>
 </Application>

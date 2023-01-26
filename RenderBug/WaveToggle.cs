@@ -156,7 +156,7 @@ public sealed class WaveToggle : AnimationLayer, IStyleable
         return r;
     }
 
-    private static void OnActivatedChanged(AvaloniaObject arg1, bool arg2)
+    private static void OnActivatedChanged(IAvaloniaObject arg1, bool arg2)
     {
         if (arg1 is not WaveToggle waveToggle) return;
         if (waveToggle.ActiveRect == null) return;

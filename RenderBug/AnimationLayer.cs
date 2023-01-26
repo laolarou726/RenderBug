@@ -93,7 +93,7 @@ public class AnimationLayer : ContentControl, IStyleable
     // 以下操作是为了显示出BackgroundCanvas
     // protected override int VisualChildrenCount => base.VisualChildrenCount + 1;
 
-    private static void PropertyChangedCallback(AvaloniaObject d, bool arg2)
+    private static void PropertyChangedCallback(IAvaloniaObject d, bool arg2)
     {
         var layer = (AnimationLayer)d;
         if (layer.Tag == null) return;
