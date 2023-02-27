@@ -5,12 +5,10 @@ using Avalonia.Media;
 using Avalonia;
 using System.ComponentModel;
 using Avalonia.Controls.Shapes;
-using Avalonia.Styling;
-using System;
 
 namespace RenderBug;
 
-public class AnimationLayer : ContentControl, IStyleable
+public class AnimationLayer : ContentControl
 {
     [Category("Animation")]
     public static readonly StyledProperty<Brush> MouseOnBrushProperty =
@@ -20,8 +18,7 @@ public class AnimationLayer : ContentControl, IStyleable
     public static readonly StyledProperty<bool> MouseEnterAnimationProperty =
         AvaloniaProperty.Register<AnimationLayer, bool>(
             nameof(MouseEnterAnimation),
-            true,
-            notifying: PropertyChangedCallback
+            true
         );
 
     public static readonly StyledProperty<bool> MouseDownWaveProperty =
@@ -33,9 +30,6 @@ public class AnimationLayer : ContentControl, IStyleable
     protected Rectangle? ActiveRect;
     protected Canvas? PART_RippleCanvasRoot;
 
-    /// <summary>
-    ///     水波反馈
-    /// </summary>
     [Category("Animation")]
     public bool MouseDownWave
     {
@@ -49,9 +43,6 @@ public class AnimationLayer : ContentControl, IStyleable
         set => SetValue(MouseOnBrushProperty, value);
     }
 
-    /// <summary>
-    ///     鼠标移入移出动画
-    /// </summary>
     public bool MouseEnterAnimation
     {
         get => GetValue(MouseEnterAnimationProperty);
@@ -90,20 +81,6 @@ public class AnimationLayer : ContentControl, IStyleable
             GeometryHelper.CreateDefiningGeometry(Bounds.Size, radiusX: radius, radiusY: radius);
     }
 
-    // 以下操作是为了显示出BackgroundCanvas
-    // protected override int VisualChildrenCount => base.VisualChildrenCount + 1;
-
-    private static void PropertyChangedCallback(AvaloniaObject d, bool arg2)
-    {
-        var layer = (AnimationLayer)d;
-        if (layer.Tag == null) return;
-
-        if (!layer.MouseEnterAnimation)
-            layer.BeginMouseEnterAnim(null);
-        else
-            layer.BeginMouseLeaveAnim(null);
-    }
-
     protected virtual void BeginMouseEnterAnim(PointerEventArgs? e)
     {
         if (ActiveRect != null && MouseEnterAnimation)
@@ -114,5 +91,21 @@ public class AnimationLayer : ContentControl, IStyleable
     {
         if (ActiveRect != null && MouseEnterAnimation)
             ActiveRect.Opacity = 0;
+    }
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        if (change.Property == MouseEnterAnimationProperty)
+        {
+            var layer = (AnimationLayer)change.Sender;
+            if (layer.Tag == null) return;
+
+            if (!layer.MouseEnterAnimation)
+                layer.BeginMouseEnterAnim(null);
+            else
+                layer.BeginMouseLeaveAnim(null);
+        }
+
+        base.OnPropertyChanged(change);
     }
 }

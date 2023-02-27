@@ -10,7 +10,6 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-using Avalonia.Media.Immutable;
 
 namespace RenderBug;
 

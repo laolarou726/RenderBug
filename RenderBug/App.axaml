@@ -4,6 +4,6 @@
     <Application.Styles>
         <StyleInclude Source="ListBoxItemStyles.axaml"/>
         <StyleInclude Source="AnimationLayerStyle.axaml"/>
-		<FluentTheme Mode="Light"/>
+		<FluentTheme />
     </Application.Styles>
 </Application>
